@@ -36,7 +36,7 @@
             .mid-blink { animation-duration: 2.5s; }
             .slow-blink { animation-duration: 4s; }
 
-            .rotating {animation: rotate 180s infinite linear;}
+            .rotating {animation: rotate 60s infinite linear;}
 
             .only-border { -webkit-text-stroke: 4px white; }
         </style>
@@ -109,7 +109,7 @@
                     template.star.content.cloneNode(true).getElementById('star-light')
                 ]
 
-                let [rx, ry] = [Math.random() * 100, Math.random() * 100]
+                let [rx, ry] = [Math.random() * 120 - 20, Math.random() * 120 - 20]
                 let r = Math.random() * (max - min) + min
 
                 t.style.top = rx + 'vh'
