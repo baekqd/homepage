@@ -12,6 +12,13 @@
         </style>
     </head>
     <body>
-        <div id="bg" class="absolute w-full h-[100vh] bg-radial from-[#202020] to-[black]">
+        <!-- Template: star -->
+        <template id="star">
+            <div id="star-target" class="absolute size-[4px] bg-white rounded-full"></div>
+            <div id="star-light" class="absolute size-[8px] bg-white rounded-full blur-xs"></div>
+        </template>
+        
+        <!-- Media Query (Max Width: 375px) -->
+        <div id="bg" class="absolute w-full h-[100vh] bg-radial from-[#202020] to-[black]"></div>
     </body>
 </html>
