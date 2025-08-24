@@ -15,17 +15,17 @@
 
         <!-- Template: star -->
         <template id="star-template">
-            <div id="star-target" class="absolute size-[4px] m-[2px] bg-white rounded-full"></div>
-            <div id="star-light" class="absolute size-[8px] bg-white rounded-full blur-xs"></div>
+            <div id="star-target" class="absolute size-[4px] m-[2px] bg-white rounded-full z-[2]"></div>
+            <div id="star-light" class="absolute size-[8px] bg-white rounded-full blur-xs z-[1]"></div>
         </template>
 
         <!-- Template: logo -->
          <template id="logo-template">
-            <div id="logo-target">
-                <img src="./logo.svg" class="absolute top-[50%] left-[50%] translate-[-50%]"/>
+            <div id="logo-target-box">
+                <img id="logo-target" src="./logo.svg" class="absolute top-[50%] left-[50%] z-[10] translate-[-50%] "/>
             </div>
-            <div id="logo-light">
-                <img src="./logo.svg" class="absolute top-[50%] left-[50%] translate-[-50%] blur-md"/>
+            <div id="logo-light-box">
+                <img id="logo-light" src="./logo.svg" class="absolute top-[50%] left-[50%] z-[9] translate-[-50%] blur-md "/>
             </div>
          </template>
         
@@ -61,9 +61,24 @@
             }
         }
 
+        function locateLogo(size = 1) {
+            if (typeof size != 'number' && size < 1) size = 1
+
+            const [t, l] = [
+                template.logo.content.cloneNode(true).getElementById('logo-target'),
+                template.logo.content.cloneNode(true).getElementById('logo-light')
+            ]
+
+            t.className += `size-[${size}rem] `
+            l.className += `size-[${size}rem] `
+
+            document.getElementById('logo-bg').appendChild(t)
+            document.getElementById('logo-bg').appendChild(l)
+        }
+
         window.addEventListener('load', () => {
             spreadStar(160)
-            // locateLogo('size-[20rem]')
+            locateLogo(20)
         })
     </script>
 </html>
