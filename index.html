@@ -8,7 +8,29 @@
 
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <style type="text/tailwindcss">
-            /* custom css style */
+            @keyframes blink {
+                0% {opacity: 1.0}
+                50% {opacity: 0.5}
+                100% {opacity: 1.0}
+            }
+
+            .blinking {
+                animation-name: blink;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-in-out;
+            }
+
+            .fast-blink {
+                animation-duration: 1s;
+            }
+
+            .mid-blink {
+                animation-duration: 2.5s;
+            }
+
+            .slow-blink {
+                animation-duration: 4s;
+            }
         </style>
     </head>
     <body class="fixed overflow-hidden w-[100%] min-w-[100%] h-[100%] min-h-[100%]">
@@ -25,7 +47,7 @@
                 <img id="logo-target" src="./logo.svg" class="absolute top-[50%] left-[50%] z-[10] translate-[-50%] "/>
             </div>
             <div id="logo-light-box">
-                <img id="logo-light" src="./logo.svg" class="absolute top-[50%] left-[50%] z-[9] translate-[-50%] blur-md "/>
+                <img id="logo-light" src="./logo.svg" class="absolute blinking mid-blink top-[50%] left-[50%] z-[9] translate-[-50%] blur-md "/>
             </div>
          </template>
         
@@ -62,8 +84,6 @@
         }
 
         function locateLogo(size = 1) {
-            if (typeof size != 'number' && size < 1) size = 1
-
             const [t, l] = [
                 template.logo.content.cloneNode(true).getElementById('logo-target'),
                 template.logo.content.cloneNode(true).getElementById('logo-light')
