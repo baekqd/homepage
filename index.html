@@ -21,6 +21,11 @@
                 100% {opacity: 1.0}
             }
 
+            @keyframes rotate {
+                from {transform: rotate(0deg)}
+                to {transform: rotate(360deg)}
+            }
+
             .blinking {
                 animation-name: blink;
                 animation-iteration-count: infinite;
@@ -30,6 +35,8 @@
             .fast-blink { animation-duration: 1s; }
             .mid-blink { animation-duration: 2.5s; }
             .slow-blink { animation-duration: 4s; }
+
+            .rotating {animation: rotate 180s infinite linear;}
 
             .only-border { -webkit-text-stroke: 4px white; }
         </style>
@@ -85,7 +92,7 @@
         </div>
         
         <!-- Media Query (Max Width: 375px) -->
-        <div id="star-bg" class="absolute w-[100vw] h-[100vh] top-[0px] left-[0px]"></div>
+        <div id="star-bg" class="absolute w-[100vw] h-[100vh] top-[0px] left-[0px] rotating"></div>
         <div id="ttl-bg" class="absolute w-[100vw] h-[100vh] top-[0px] left-[0px]"></div>
     </body>
     <script>
@@ -106,11 +113,11 @@
                 let r = Math.random() * (max - min) + min
 
                 t.style.top = rx + 'vh'
-                t.style.left = ry + 'vw'
+                t.style.left = ry + 'vh'
                 t.style.animation = `blink ${r}s ease-in-out infinite`
 
                 l.style.top = (rx) + 'vh'
-                l.style.left = (ry) + 'vw'
+                l.style.left = (ry) + 'vh'
                 l.style.animation = `blink ${r}s ease-in-out infinite`
 
                 document.getElementById('star-bg').appendChild(t)
@@ -151,7 +158,7 @@
         }
 
         window.addEventListener('load', () => {
-            spreadStar(160, 3, 10)
+            spreadStar(240, 3, 10)
             locateLogo(40)
             locateTitle(22.5)
         })
